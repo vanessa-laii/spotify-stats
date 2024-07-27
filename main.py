@@ -3,15 +3,21 @@ from flask import Flask, redirect, request, session, url_for, render_template, f
 from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.cache_handler import FlaskSessionCacheHandler
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(64)
 
-client_id = '92f1033774764d1ca0d1e363542e884e'
-client_secret = '042f8004c7904d7284e1473a4a119ad9'
-redirect_uri = 'http://localhost:5000/callback'
+# Load Spotify API credentials from environment variables
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_SECRET')
+redirect_uri = os.getenv('REDIRECT_URI')
 scope = 'user-read-private, playlist-read-private'
 
+# Set up Spotify OAuth
 cache_handler = FlaskSessionCacheHandler(session)
 sp_oauth = SpotifyOAuth(
     client_id=client_id,
