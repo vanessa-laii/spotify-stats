@@ -1,4 +1,4 @@
-# spotify-stats
+# Spotify Stats
 
 This project is a Flask web application that integrates with the Spotify API to display user profile information and playlists. The application uses Spotipy for Spotify API interactions and Flask-Login for user authentication.
 
